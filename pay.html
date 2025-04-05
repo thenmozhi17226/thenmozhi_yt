@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTR FASHION</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: absolute;
+            top: 0;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        .cart {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+
+        main {
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        
+        .payment-options {
+            margin-top: 40px;
+        }
+
+        .payment-options h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .payment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .payment-buttons button {
+            background-color: #ff9900;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .payment-buttons button:hover {
+            background-color: #ff8c00;
+        }
+
+        .payment-methods img {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>NTR FASHION</h1>
+        </div>
+        <div class="cart">
+            <a href="cart.html">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <main>
+        
+
+        <!-- Proceed to Buy Button and Payment Options -->
+        <div class="payment-options">
+            <h3>Proceed to Buy</h3>
+            <button class="buy-now" onclick="proceedToBuy()">Proceed to Buy</button>
+
+            <!-- Payment Options -->
+            <div class="payment-buttons">
+                <button onclick="selectPayment('COD')">Cash on Delivery</button>
+                <button onclick="selectPayment('Online Payment')">Online Payment</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ClothStore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToCart(productName, productPrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(${productName} has been added to your cart.);
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.querySelector('.cart a').innerText = 🛒 Cart (${cart.length});
+        }
+
+        function proceedToBuy() {
+            alert('Redirecting to the payment page...');
+           
+        }
+
+        function selectPayment(method) {
+            if (method === 'COD') {
+                alert('You have selected Cash on Delivery.');
+                
+            } else if (method === 'Online Payment') {
+                alert('You have selected Online Payment.');
+                
+            }
+        }
+
+       
+        updateCartCount();
+    </script>
+</body>
+</html>

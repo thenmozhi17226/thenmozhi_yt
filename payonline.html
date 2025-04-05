@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTR FASHION</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .payment-options {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .payment-options h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .payment-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .payment-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        
+        .online-payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .online-payment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .online-payment-buttons button {
+            background-color: #0070f3;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .online-payment-buttons button:hover {
+            background-color: #005bb5;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-options">
+        <h3>Select Payment Method</h3>
+        
+        <!-- Button to Select Online Payment Option -->
+        <div class="payment-buttons">
+            <button onclick="selectPayment('Online Payment')">Online Payment</button>
+            <button onclick="selectPayment('COD')">Cash on Delivery</button>
+        </div>
+
+        <!-- Online Payment Section -->
+        <div class="online-payment-section" id="onlinePaymentSection">
+            <h3>Choose an Online Payment Method</h3>
+            <div class="online-payment-buttons">
+                <button onclick="selectMethod('gpay')">Google Pay</button>
+                <button onclick="selectMethod('phonepe')">PhonePe</button>
+                <button onclick="selectMethod('paytm')">Paytm</button>
+                <button onclick="selectMethod('creditCard')">Credit Card</button>
+            </div>
+
+            <!-- Payment Methods Icons -->
+            <div class="payment-methods">
+                <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyVO9LUWF81Ov6LZR50eDNu5rNFCpkn0LwYQ&s" alt="Google Pay">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7C7cl9ufztQRxoH-y_biXvwoAf5bynbtnA&s" alt="PhonePe">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png" alt="Paytm">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function selectPayment(paymentMethod) {
+            if (paymentMethod === 'Online Payment') {
+                document.getElementById('onlinePaymentSection').style.display = 'block';
+            } else {
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+            }
+        }
+
+        
+        function selectMethod(method) {
+            alert('Selected Payment Method: ' + method);
+        }
+    </script>
+
+</body>
+</html>

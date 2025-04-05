@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTR FASHION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .hidden { display: none; }
+
+        /* Styling for the login, account, and product pages */
+        #loginPage, #accountPage, #storePage, #paymentPage {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 0 15px;
+        }
+
+        /* Styling for product images */
+        .product img {
+            width: 100%;  /* Image width (responsive) */
+            max-width: 200px;
+            height: 250px; /* Image height */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product {
+            text-align: center;
+            margin: 15px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .product button:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack the products vertically */
+            align-items: center; /* Center align all products */
+            gap: 20px;
+        }
+
+        /* Mobile responsiveness for smaller screens */
+        @media (max-width: 600px) {
+            .product img {
+                max-width: 150px; /* Smaller images on small screens */
+            }
+
+            .product {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            #loginPage, #accountPage, #storePage, #paymentPage {
+                max-width: 90%; /* Allow more space on mobile devices */
+            }
+        }
+
+        /* Add some spacing for headers */
+        h1, h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Payment page styles */
+        .payment-options {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .payment-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .payment-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        .online-payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .online-payment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .online-payment-buttons button {
+            background-color: #0070f3;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .online-payment-buttons button:hover {
+            background-color: #005bb5;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="bg-white p-8 rounded-lg shadow-lg w-96 text-center">
+        <h1 class="text-2xl font-bold mb-4">Welcome Back!</h1>
+        <p class="mb-4">Sign in to your account and start shopping for the latest fashion!</p>
+        <form id="loginForm" class="space-y-4">
+            <input type="email" id="loginEmail" class="w-full px-3 py-2 border rounded-lg" placeholder="Email Address" required>
+            <input type="password" id="loginPassword" class="w-full px-3 py-2 border rounded-lg" placeholder="Password" required>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Login</button>
+        </form>
+        <p class="text-red-500 mt-2" id="loginMessage"></p>
+        <p class="mt-4">New here? <a href="#" onclick="showAccountCreation()" class="text-blue-500">Create an account</a></p>
+    </div>
+
+    <!-- Account Creation Page -->
+    <div id="accountPage" class="hidden bg-white p-8 rounded-lg shadow-lg w-96">
+        <h2 class="text-2xl font-bold text-center mb-4">Create an Account</h2>
+        <form id="accountForm" class="space-y-4">
+            <input type="text" id="fullName" class="w-full px-3 py-2 border rounded-lg" placeholder="Full Name" required>
+            <input type="email" id="email" class="w-full px-3 py-2 border rounded-lg" placeholder="Email" required>
+            <input type="tel" id="phone" class="w-full px-3 py-2 border rounded-lg" placeholder="Phone Number" required>
+            <input type="text" id="address" class="w-full px-3 py-2 border rounded-lg" placeholder="Address" required>
+            <input type="password" id="password" class="w-full px-3 py-2 border rounded-lg" placeholder="Password" required>
+            <input type="password" id="confirmPassword" class="w-full px-3 py-2 border rounded-lg" placeholder="Confirm Password" required>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Sign Up</button>
+        </form>
+        <p id="accountMessage" class="text-center mt-4 text-red-500"></p>
+    </div>
+
+    <!-- Product Selection Page -->
+    <div id="storePage" class="hidden container">
+        <header>
+            <div class="logo">
+                <h1>NTR FASHION</h1>
+            </div>
+        </header>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product">
+                <h3>Casual Shirt</h3>
+                <img src="https://rukminim2.flixcart.com/image/850/1000/kfoapow0-0/shirt/n/q/o/s-casual-shirt-poison-ivy-original-imafw2gqujskrgce.jpeg?q=90&crop=false" alt="Casual Shirt">
+                <p>Price: $25</p>
+                <button>Add to Cart</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <h3>Formal Trousers</h3>
+                <img src="http://www.montecarlo.in/cdn/shop/files/224067740-2-36_5.jpg?v=1726825269" alt="Formal Trousers">
+                <p>Price: $35</p>
+                <button>Add to Cart</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product">
+                <h3>Leather Jacket</h3>
+                <img src="https://assets.ajio.com/medias/sys_master/root/20230620/9tWD/64921d17d55b7d0c6380ecae/-473Wx593H-463312106-brown-MODEL.jpg" alt="Leather Jacket">
+                <p>Price: $80</p>
+                <button>Add to Cart</button>
+            </div>
+            <!-- Product 4 -->
+            <div class="product">
+                <h3>Jeans</h3>
+                <img src="https://www.globalrepublic.in/cdn/shop/products/2_result_b41262db-7a59-43f8-9747-6c037ec37024_1080x.webp?v=1716539375" alt="Jeans">
+                <p>Price: $40</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <button onclick="showPaymentPage()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mt-4">Proceed to Payment</button>
+    </div>
+
+    <!-- Payment Method Selection Page -->
+    <div id="paymentPage" class="hidden payment-options">
+        <h3>Select Payment Method</h3>
+        
+        <!-- Button to Select Online Payment Option -->
+        <div class="payment-buttons">
+            <button onclick="selectPayment('Online Payment')">Online Payment</button>
+            <button onclick="selectPayment('COD')">Cash on Delivery</button>
+        </div>
+
+        <!-- Online Payment Section -->
+        <div class="online-payment-section" id="onlinePaymentSection">
+            <h3>Choose an Online Payment Method</h3>
+            <div class="online-payment-buttons">
+                <button onclick="selectMethod('gpay')">Google Pay</button>
+                <button onclick="selectMethod('phonepe')">PhonePe</button>
+                <button onclick="selectMethod('paytm')">Paytm</button>
+                <button onclick="selectMethod('creditCard')">Credit Card</button>
+            </div>
+
+            <!-- Payment Methods Icons -->
+            <div class="payment-methods">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyVO9LUWF81Ov6LZR50eDNu5rNFCpkn0LwYQ&s" alt="Google Pay">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7C7cl9ufztQRxoH-y_biXvwoAf5bynbtnA&s" alt="PhonePe">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png" alt="Paytm">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('accountPage').classList.remove('hidden');
+        });
+
+        document.getElementById('accountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const accountMessage = document.getElementById('accountMessage');
+            
+            if (password !== confirmPassword) {
+                accountMessage.textContent = "Passwords do not match!";
+                return;
+            }
+            
+            accountMessage.textContent = "Account created successfully!";
+            accountMessage.classList.remove("text-red-500");
+            accountMessage.classList.add("text-green-500");
+            setTimeout(() => {
+                document.getElementById('accountPage').classList.add('hidden');
+                document.getElementById('storePage').classList.remove('hidden');
+            }, 1000);
+        });
+
+        function showPaymentPage() {
+            document.getElementById('storePage').classList.add('hidden');
+            document.getElementById('paymentPage').classList.remove('hidden');
+        }
+
+        function selectPayment(paymentMethod) {
+            if (paymentMethod === 'Online Payment') {
+                document.getElementById('onlinePaymentSection').style.display = 'block';
+            } else {
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+            }
+        }
+
+        function selectMethod(method) {
+            alert('Selected Payment Method: ' + method);
+        }
+    </script>
+</body>
+</html>

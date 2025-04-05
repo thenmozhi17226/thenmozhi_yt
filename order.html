@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - NTR FASHION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .order-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        .order-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .order-summary {
+            margin-top: 20px;
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+        }
+        .order-summary p {
+            margin: 5px 0;
+        }
+        .order-summary .total-price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .form-container input {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Place Order Form -->
+        <div class="order-container">
+            <h2>Place Your Order</h2>
+            <form id="orderForm" class="form-container">
+                <h3>Shipping Information</h3>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+
+                <label for="address">Shipping Address</label>
+                <input type="text" id="address" placeholder="Enter your shipping address" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email address" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+                <h3>Payment Information</h3>
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="creditCard">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cashOnDelivery">Cash on Delivery</option>
+                </select>
+
+                <button type="submit">Place Order</button>
+            </form>
+
+            <!-- Order Summary Section -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <p><strong>Item 1:</strong> Casual Shirt - $25</p>
+                <p><strong>Item 2:</strong> Formal Trousers - $35</p>
+                <p><strong>Item 3:</strong> Leather Jacket - $80</p>
+                <p class="total-price"><strong>Total Price: $140</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            // Get values from the form fields
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            // Validate form inputs
+            if (!name || !address || !email || !phone || !paymentMethod) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // If form is valid, simulate order placement
+            alert(`Order placed successfully!\n\nCustomer Details:\nName: ${name}\nAddress: ${address}\nEmail: ${email}\nPhone: ${phone}\nPayment Method: ${paymentMethod}\n\nTotal: $140`);
+        });
+    </script>
+
+</body>
+</html>
